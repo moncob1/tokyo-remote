@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TOKYO" />
+  <meta name="theme-color" content="#0c1420" />
+  <meta name="description" content="Control remoto TOKYO xperience+ para iPad" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>TOKYO Remote</title>
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="stage">
+    <header class="brand-bar">
+      <div class="brand-mark">
+        <span class="tokyo-seal">TOKYO</span>
+        <span class="xperience">xperience+</span>
+      </div>
+      <button type="button" class="gear-btn" id="settingsBtn" aria-label="Ajustes">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.07 7.07 0 0 0-1.63-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.8a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.55-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.7 8.48a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L2.82 14.16a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.43.34.68.22l2.39-.96c.5.39 1.04.7 1.63.94l.36 2.54c.05.24.26.42.5.42h3.8c.24 0 .45-.18.5-.42l.36-2.54c.59-.24 1.13-.55 1.63-.94l2.39.96c.25.12.54.02.68-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="remote" id="remote" aria-label="Control remoto TOKYO">
+      <div class="remote-shell">
+        <div class="lcd" id="lcd" aria-live="polite">
+          <div class="lcd-top">
+            <span class="lcd-power" id="lcdPower">●</span>
+            <span class="lcd-timer" id="lcdTimer"></span>
+            <span class="lcd-fan" id="lcdFan"></span>
+          </div>
+          <div class="lcd-mode" id="lcdMode">COOL</div>
+          <div class="lcd-temp-row">
+            <span class="lcd-temp" id="lcdTemp">24</span>
+            <span class="lcd-unit">°C</span>
+          </div>
+          <div class="lcd-swing" id="lcdSwing"></div>
+        </div>
+
+        <div class="btn-grid" role="group" aria-label="Funciones principales">
+          <button type="button" class="rbtn frio" data-action="frio" aria-label="Frío">
+            <span>FRÍO</span>
+          </button>
+          <button type="button" class="rbtn veloc" data-action="veloc" aria-label="Velocidad">
+            <span>VELOC</span>
+          </button>
+          <button type="button" class="rbtn power" data-action="power" aria-label="Encender o apagar">
+            <span>ON/OFF</span>
+          </button>
+          <button type="button" class="rbtn calor" data-action="calor" aria-label="Calor">
+            <span>CALOR</span>
+          </button>
+          <button type="button" class="rbtn tiempo" data-action="tiempo" aria-label="Temporizador">
+            <span>TIEMPO</span>
+          </button>
+          <button type="button" class="rbtn modo" data-action="modo" aria-label="Modo">
+            <span>MODO</span>
+          </button>
+        </div>
+
+        <div class="dpad" role="group" aria-label="Temperatura y oscilación">
+          <button type="button" class="dpad-zone up" data-action="temp-up" aria-label="Subir temperatura">
+            <span class="plus">+</span>
+            <span class="hint">TEMP</span>
+          </button>
+          <button type="button" class="dpad-zone left" data-action="swing-h" aria-label="Oscilar izquierda derecha">
+            <span class="hint">Izq/Der<br />Oscilar</span>
+          </button>
+          <button type="button" class="dpad-center" data-action="menu" aria-label="Menú OK">
+            <span class="menu-label">MENÚ</span>
+            <span class="menu-divider"></span>
+            <span class="ok-label">OK</span>
+          </button>
+          <button type="button" class="dpad-zone right" data-action="swing-v" aria-label="Oscilar arriba abajo">
+            <span class="hint">Arr/Abj<br />Oscilar</span>
+          </button>
+          <button type="button" class="dpad-zone down" data-action="temp-down" aria-label="Bajar temperatura">
+            <span class="minus">−</span>
+            <span class="hint">TEMP</span>
+          </button>
+        </div>
+
+        <div class="remote-logo" aria-hidden="true">
+          <div class="logo-seal">
+            <span class="logo-bar">TOKYO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="hint-line" id="statusLine">Listo · Añade a Inicio para usarlo como app</p>
+  </main>
+
+  <dialog class="sheet" id="settingsDialog">
+    <form method="dialog" class="sheet-inner">
+      <header>
+        <h2>Ajustes</h2>
+        <button type="submit" class="sheet-close" value="close" aria-label="Cerrar">✕</button>
+      </header>
+      <p class="sheet-lead">
+        El iPad no emite infrarrojos. Esta app replica el mando y puede enviar cada pulsación a un puente Wi‑Fi (Broadlink, Home Assistant, ESP8266, etc.).
+      </p>
+      <label class="field">
+        <span>URL webhook (opcional)</span>
+        <input type="url" id="webhookUrl" placeholder="https://homeassistant.local/api/webhook/tokyo" autocomplete="off" />
+      </label>
+      <label class="field check">
+        <input type="checkbox" id="haptics" checked />
+        <span>Vibración al pulsar</span>
+      </label>
+      <label class="field check">
+        <input type="checkbox" id="sounds" checked />
+        <span>Clic suave</span>
+      </label>
+      <div class="sheet-actions">
+        <button type="button" class="primary" id="saveSettings">Guardar</button>
+        <button type="button" class="ghost" id="resetState">Reiniciar estado</button>
+      </div>
+      <p class="sheet-foot">En Safari: Compartir → <strong>Añadir a pantalla de inicio</strong>.</p>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
